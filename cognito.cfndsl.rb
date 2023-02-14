@@ -20,7 +20,7 @@ CloudFormation do
     UserPoolId Ref(:UserPool) #Required
     ProviderDetails ({
       client_id: 'my-google-client-id',
-      client_secret: 'my-google-client-secret'
+      client_secret: 'my-google-client-secret',
       authorize_scopes: "profile email openid"
     })
   }
