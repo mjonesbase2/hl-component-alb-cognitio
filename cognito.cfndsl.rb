@@ -25,4 +25,18 @@ CloudFormation do
     })
   }
 
+  #TODO Add exports for userpool id etc then import that from the highlander file back into the ALB `actions.rb`
+  #cognito, then complete the shared alb-lib function to create cognito-auth for alb with provided deets
+  Output(:UserPoolId) {
+    Value(FnGetAtt(:UserPool, :UserPoolArn))
+  }
+
+  Output(:UserPoolClientId) {
+    Value(FnGetAtt(:UserPoolClient, :UserPoolClientId))
+  }
+
+  Output(:UserPoolDomainName) {
+    Value(FnGetAtt(:UserPoolDomain, :Domain))
+  }
+
 end
