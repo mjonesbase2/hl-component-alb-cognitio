@@ -1,0 +1,9 @@
+---
+loadbalancer_scheme: public
+dns_format: "${EnvironmentName}.${DnsDomain}"
+component_version: latest
+component_name: cognito
+template_name: cognito
+template_version: latest
+template_dir: "/Users/tarunmenon/code/repos/hl-component-alb-cognitio"
+description: cognito@latest - vlatest

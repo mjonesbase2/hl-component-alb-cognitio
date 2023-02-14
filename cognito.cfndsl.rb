@@ -10,14 +10,18 @@ CloudFormation do
   end
 
   Cognito_UserPoolDomain(:UserPoolDomain) do
-    Domain 'bearse-api-dev' #TODO remove this later
+    Domain FnSub("${EnvironmentName}-testcognito-domain") #TODO remove this later
     UserPoolId Ref(:UserPool) #Required
   end
 
-  Cognito_UserPoolIdentityProvider(:IdentityProvider) do
+  Cognito_UserPoolIdentityProvider(:IdentityProvider) {
     ProviderName 'Google'
     ProviderType 'Google'
     UserPoolId Ref(:UserPool) #Required
-  end
+    ProviderDetails ({
+      client_id: 'my-google-client-id',
+      client_secret: 'my-google-client-secret'
+    })
+  }
 
 end

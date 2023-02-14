@@ -1,0 +1,44 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  UserPool:
+    Type: AWS::Cognito::UserPool
+    Properties:
+      UserPoolName: test-userpool
+  UserPoolClient:
+    Type: AWS::Cognito::UserPoolClient
+    Properties:
+      UserPoolId:
+        Ref: UserPool
+  UserPoolDomain:
+    Type: AWS::Cognito::UserPoolDomain
+    Properties:
+      Domain:
+        Fn::Sub: "${EnvironmentName}-testcognito-domain"
+      UserPoolId:
+        Ref: UserPool
+  IdentityProvider:
+    Type: AWS::Cognito::UserPoolIdentityProvider
+    Properties:
+      ProviderName: Google
+      ProviderType: Google
+      UserPoolId:
+        Ref: UserPool
+      ProviderDetails:
+        client_id: my-google-client-id
+        client_secret: my-google-client-secret
+Parameters:
+  EnvironmentName:
+    Type: String
+    Default: dev
+    NoEcho: false
+  EnvironmentType:
+    Type: String
+    Default: development
+    NoEcho: false
+Description: cognito@latest - vlatest
+Outputs:
+  CfTemplateUrl:
+    Value: "/cognito.compiled.yaml"
+  CfTemplateVersion:
+    Value: latest
