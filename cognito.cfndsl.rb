@@ -6,6 +6,7 @@ CloudFormation do
 
   Cognito_UserPoolClient(:UserPoolClient) do
     UserPoolId Ref(:UserPool) #Required
+    GenerateSecret true
   end
 
   Cognito_UserPoolDomain(:UserPoolDomain) do
