@@ -7,6 +7,9 @@ CloudFormation do
   Cognito_UserPoolClient(:UserPoolClient) do
     UserPoolId Ref(:UserPool) #Required
     GenerateSecret true
+    AllowedOAuthFlows ['code','implicit']
+    AllowedOAuthScopes ['email','openid','profile','aws.cognito.signin.user.admin']
+    AllowedOAuthFlowsUserPoolClient true
   end
 
   Cognito_UserPoolDomain(:UserPoolDomain) do
