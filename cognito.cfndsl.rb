@@ -4,12 +4,15 @@ CloudFormation do
     UserPoolName 'test-userpool'
   end  
 
+  #Check what flows/scopes we want
   Cognito_UserPoolClient(:UserPoolClient) do
     UserPoolId Ref(:UserPool) #Required
     GenerateSecret true
     AllowedOAuthFlows ['code','implicit']
     AllowedOAuthScopes ['email','openid','profile','aws.cognito.signin.user.admin']
     AllowedOAuthFlowsUserPoolClient true
+    CallbackURLs ['http://localhost:3000']
+    DefaultRedirectURI ['http://localhost:3000']
   end
 
   Cognito_UserPoolDomain(:UserPoolDomain) do
