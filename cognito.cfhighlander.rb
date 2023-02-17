@@ -3,7 +3,8 @@ CfhighlanderTemplate do
 
   Parameters do
     ComponentParam 'EnvironmentName', 'dev'
-    ComponentParam 'EnvironmentType', 'development'
+    ComponentParam 'CallbackURLs',  type: 'CommaDelimitedList'
+    ComponentParam 'DefaultRedirectURI', ''
   end
 
 end
