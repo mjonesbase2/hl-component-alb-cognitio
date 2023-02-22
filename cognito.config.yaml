@@ -12,7 +12,6 @@ user_pool_client:
     - client_credentials
   allowed_ouath_scopes:
     - openid
-    - profile
   
 user_pool_domain:
   name: cf-domain
