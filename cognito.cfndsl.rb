@@ -1,25 +1,25 @@
 CloudFormation do
 
   Cognito_UserPool(:UserPool) do
-    UserPoolName FnSub("${EnvironmentName}-cf-userpool")
+    UserPoolName user_pool['name']
   end  
 
-  #Check what flows/scopes we want
+  Cognito_UserPoolDomain(:UserPoolDomain) do
+    Domain user_pool_domain['name']
+    UserPoolId Ref(:UserPool)
+  end
+
   Cognito_UserPoolClient(:UserPoolClient) do
     UserPoolId Ref(:UserPool)
-    GenerateSecret true
-    AllowedOAuthFlows ['code','implicit']
-    AllowedOAuthScopes ['email','openid','profile','aws.cognito.signin.user.admin']
-    AllowedOAuthFlowsUserPoolClient true
-    CallbackURLs Ref(:CallbackURLs)
-    DefaultRedirectURI Ref(:DefaultRedirectURI)
+    ClientName user_pool_client['name']
+    GenerateSecret user_pool_client['generate_secret']
+    AllowedOAuthFlows user_pool_client['allowed_oauth_flows']
+    AllowedOAuthScopes user_pool_client['allowed_ouath_scopes']
+    AllowedOAuthFlowsUserPoolClient user_pool_client['allowed_oauth_flows_userpool_client']
+    CallbackURLs user_pool_client['call_back_urls']
+    DefaultRedirectURI user_pool_client['default_redirect_uri']
   end
-
-  Cognito_UserPoolDomain(:UserPoolDomain) do
-    Domain FnSub("${EnvironmentName}-cf-domain")
-    UserPoolId Ref(:UserPool)
-  end
-
+  
   Output(:UserPoolId) {
     Value(FnGetAtt(:UserPool, :Arn))
   }
