@@ -5,11 +5,12 @@ CloudFormation do
   end  
 
   Cognito_UserPoolGroup(:UserPoolGroup) do
-    UserPoolName user_pool['name']
+    GroupName 'default_user_group'
+    UserPoolId Ref(:UserPool)
   end  
 
   Cognito_UserPoolDomain(:UserPoolDomain) do
-    GroupName 'default_user_group'
+    Domain user_pool_domain['name']
     UserPoolId Ref(:UserPool)
   end
 
@@ -23,8 +24,8 @@ CloudFormation do
     CallbackURLs user_pool_client['call_back_urls']
     DefaultRedirectURI user_pool_client['default_redirect_uri']
     SupportedIdentityProviders user_pool_client['supported_identity_providers']
-    RefreshTokenValidity user_pool_client['refresh_token_validity']  3650
-    AccessTokenValidity user_pool_client['access_token_validity'] 12
+    RefreshTokenValidity user_pool_client['refresh_token_validity']
+    AccessTokenValidity user_pool_client['access_token_validity']
   end
   
   Output(:UserPoolId) {
