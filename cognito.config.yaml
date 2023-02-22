@@ -9,8 +9,7 @@ user_pool_client:
   default_redirect_uri: http://localhost:3000/
   allowed_oauth_flows_userpool_client: true
   allowed_oauth_flows:
-    - code
-    - implicit
+    - client_credentials
   allowed_ouath_scopes:
     - openid
     - profile
