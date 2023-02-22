@@ -10,7 +10,7 @@ user_pool_client:
   allowed_oauth_flows_userpool_client: true
   allowed_oauth_flows:
     - code
-    - client_credentials
+    - implicit
   allowed_ouath_scopes:
     - openid
     - profile
