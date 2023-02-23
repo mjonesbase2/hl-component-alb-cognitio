@@ -6,11 +6,11 @@ user_pool_client:
   generate_secret: true
   call_back_urls:
     - http://localhost:3000
-  default_redirect_uri: http://localhost:3000
+  default_redirect_uri: 
+    Fn::Sub: https://app.${EnvironmentName}.${DnsDomain}/oauth2/idpresponse
   allowed_oauth_flows_userpool_client: true
   allowed_oauth_flows:
     - code
-    - implicit
   allowed_ouath_scopes:
     - phone
     - email

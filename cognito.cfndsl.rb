@@ -40,10 +40,4 @@ CloudFormation do
   Output(:UserPoolDomainName) {
     Value(Ref(:UserPoolDomain))
   }
-
-  Output(:HostedUIURL){
-    responses = FnJoin('+',user_pool_client['allowed_oauth_flows'])
-    scopes = FnJoin('+',user_pool_client['allowed_ouath_scopes'])
-    Value(FnSub("https://#{Ref(:UserPoolDomain)}.auth.ap-southeast-2.amazoncognito.com/login?client_id=#{Ref(:UserPoolClient)}&response_type=#{responses}&scope==#{scopes}&redirect_uri=#{user_pool_client['default_redirect_uri']}"))
-  }
 end
