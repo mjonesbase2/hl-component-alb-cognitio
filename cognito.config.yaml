@@ -12,6 +12,7 @@ user_pool_client:
     - code
     - implicit
   allowed_ouath_scopes:
+    - phone
     - email
     - openid
     - profile
