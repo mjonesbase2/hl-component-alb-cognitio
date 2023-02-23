@@ -40,4 +40,8 @@ CloudFormation do
   Output(:UserPoolDomainName) {
     Value(Ref(:UserPoolDomain))
   }
+
+  Output(:URL){
+    Value(FnSub("https://app.${EnvironmentName}.${DnsDomain})"))
+  }
 end
