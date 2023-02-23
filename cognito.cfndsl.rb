@@ -26,6 +26,7 @@ CloudFormation do
     SupportedIdentityProviders user_pool_client['supported_identity_providers']
     RefreshTokenValidity user_pool_client['refresh_token_validity']
     AccessTokenValidity user_pool_client['access_token_validity']
+    ExplicitAuthFlows user_pool_client['explicit_auth_flows']
   end
   
   Output(:UserPoolId) {
