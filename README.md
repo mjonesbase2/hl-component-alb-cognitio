@@ -21,7 +21,7 @@ Look at `cognito.config.yaml` for default format of configuration file.
 | Name | Value | Exported |
 | ---- | ----- | -------- |
 | UserPoolId | UserPool Id  | true
-| UserPoolClientIdr | UserPoolClient Id | true
+| UserPoolClientId | UserPoolClient Id | true
 | UserPoolDomainName | Domain name of user pool domain| true
 | URL |  Application DNS Endpoint | true
 
