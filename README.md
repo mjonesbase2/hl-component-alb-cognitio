@@ -1,6 +1,5 @@
 # alb-cognitio CfHighlander component
 
-```
 ### Usage
 
 Creates Cognito UserPool, UserPoolGroup, UserPoolDomain and UserPoolClient. 
@@ -32,6 +31,4 @@ Look at `cognito.config.yaml` for default format of configuration file.
 Component name: 'cognito', template: 'git:https://github.com/theonestackhl-component-alb-cognitio#main.snapshot' do
     parameter name: 'DnsDomain', value: root_domain
 end 
-
-
 ```
