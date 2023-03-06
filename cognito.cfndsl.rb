@@ -50,6 +50,6 @@ CloudFormation do
   }
 
   Output(:URL){
-    Value(FnIf(:EnableCognito), FnSub("https://app.${EnvironmentName}.${DnsDomain})",''))
+    Value(FnIf(:EnableCognito, FnSub("https://app.${EnvironmentName}.${DnsDomain}"),''))
   }
 end
