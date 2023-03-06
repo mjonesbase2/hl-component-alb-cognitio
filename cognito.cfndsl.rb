@@ -46,7 +46,7 @@ CloudFormation do
   }
 
   Output(:UserPoolDomainName) {
-    Value(FnIf(:EnableCognito, Ref(:UserPoolClient), ''))
+    Value(FnIf(:EnableCognito, Ref(:UserPoolDomain), ''))
   }
 
   Output(:URL){
