@@ -1,20 +1,28 @@
 CloudFormation do
 
+  Condition(:EnableCognito, FnEquals(Ref(:CreateCognitoResources), 'true'))
+
+  Sns_Topic(:CognitoTopic)
+
   Cognito_UserPool(:UserPool) do
+    Condition :EnableCognito
     UserPoolName user_pool['name']
   end  
 
   Cognito_UserPoolGroup(:UserPoolGroup) do
+    Condition :EnableCognito
     GroupName 'default_user_group'
     UserPoolId Ref(:UserPool)
   end  
 
   Cognito_UserPoolDomain(:UserPoolDomain) do
+    Condition :EnableCognito
     Domain user_pool_domain['name']
     UserPoolId Ref(:UserPool)
   end
 
   Cognito_UserPoolClient(:UserPoolClient) do
+    Condition :EnableCognito
     UserPoolId Ref(:UserPool)
     ClientName user_pool_client['name']
     GenerateSecret user_pool_client['generate_secret']
@@ -30,18 +38,18 @@ CloudFormation do
   end
   
   Output(:UserPoolId) {
-    Value(FnGetAtt(:UserPool, :Arn))
+    Value(FnIf(:EnableCognito, FnGetAtt(:UserPool, :Arn), ''))
   }
 
   Output(:UserPoolClientId) {
-    Value(Ref(:UserPoolClient))
+    Value(FnIf(:EnableCognito, Ref(:UserPoolClient), ''))
   }
 
   Output(:UserPoolDomainName) {
-    Value(Ref(:UserPoolDomain))
+    Value(FnIf(:EnableCognito, Ref(:UserPoolClient), ''))
   }
 
   Output(:URL){
-    Value(FnSub("https://app.${EnvironmentName}.${DnsDomain})"))
+    Value(FnIf(:EnableCognito), FnSub("https://app.${EnvironmentName}.${DnsDomain})",''))
   }
 end
