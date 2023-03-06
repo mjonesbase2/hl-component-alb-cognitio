@@ -14,8 +14,8 @@ Look at `cognito.config.yaml` for default format of configuration file.
 | ---- | --- | ------- | ------ | ---- | -------------- |
 | EnvironmentName | Tagging | dev | true | String | 
 | EnvironmentType | Tagging | development | true | String | ['development','production']
-| DnsDomain | DNS domain to use| | true | String |
-
+| DnsDomain | DNS domain to use | | true | String |
+| CreateCognitoResources | Set whether to create cognito resources or not | | true | String |  ['true','false']
 ### Outputs/Exports
 
 | Name | Value | Exported |
