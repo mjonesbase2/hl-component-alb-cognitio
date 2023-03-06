@@ -2,7 +2,7 @@ CloudFormation do
 
   Condition(:EnableCognito, FnEquals(Ref(:CreateCognitoResources), 'true'))
 
-  Sns_Topic(:CognitoTopic)
+  SNS_Topic(:CognitoTopic)
 
   Cognito_UserPool(:UserPool) do
     Condition :EnableCognito
