@@ -11,7 +11,7 @@ CloudFormation do
 
   Cognito_UserPoolGroup(:UserPoolGroup) do
     Condition :EnableCognito
-    GroupName 'default_user_group'
+    GroupName user_pool_group['name']
     UserPoolId Ref(:UserPool)
   end  
 
