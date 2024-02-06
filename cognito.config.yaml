@@ -1,6 +1,7 @@
 user_pool:
   name: cf_user_pool
-
+user_pool_group:
+  name: cf_user_pool_group
 user_pool_client:
   name: cf_user_pool_client
   generate_secret: true
