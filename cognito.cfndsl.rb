@@ -1,7 +1,7 @@
 CloudFormation do
 
   Condition(:EnableCognito, FnEquals(Ref(:CreateCognitoResources), 'true'))
-  Condition(:ExternalUserPool, FnNot(FnEquals(Ref(:CustomUserPool), '')))
+  Condition(:ExternalUserPool, FnNot(FnEquals(Ref(:CustomUserPoolId), '')))
   Condition(:CreateUserPool, FnAnd([Condition('EnableCognito'), FnNot(Condition('ExternalUserPool'))]))
   SNS_Topic(:CognitoTopic)
 
